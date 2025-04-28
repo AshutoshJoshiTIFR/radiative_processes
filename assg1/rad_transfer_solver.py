@@ -5,8 +5,8 @@ def alpha(s, a0=1):
     if s<0:
         print("Invalid s")
         return
-    out = a0 * s**2
-    #out = a0 * np.log(s)
+    #out = a0 * s**2
+    out = a0 * np.log(s)
     return out
     
     
@@ -14,8 +14,8 @@ def sigma(s, sig0=1):
     if s<0:
         print("Invalid s")
         return
-    out = sig0 * s**2
-    #out = sig0 * np.log(s)
+    #out = sig0 * s**2
+    out = sig0 * np.log(s)
     return out
     
 
@@ -55,7 +55,7 @@ I_nu_i = 1
 tau_nu_i = 0
 
 y_initial = np.array([I_nu_i, tau_nu_i])
-s_range = np.linspace(0.1 * L, L, 10000)
+s_range = np.linspace(0.1 * L, L, 1000)
 
 y = rk4_solver(y_initial, s_range, dydx)
 
@@ -66,11 +66,12 @@ plt.plot(s_range/L, tau_nu, ".-k")
 plt.xlabel("r/L")
 plt.ylabel("tau_nu")
 plt.grid()
-plt.show()
+plt.savefig("tau_nu_logarithmic")
+plt.close()
 
 plt.plot(s_range/L, I_nu, ".-k")
 plt.xlabel("r/L")
 plt.ylabel("I_nu")
 #plt.ylim(0, 1)
 plt.grid()
-plt.show()
+plt.savefig("I_nu_logarithmic")
